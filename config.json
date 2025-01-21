@@ -1,3 +1,4 @@
 {
-  "defaultAppLanguage": "en"
+  "defaultAppLanguage": "en",
+  "apiUrl": "https://openlibrary.org/"
 }

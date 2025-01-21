@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { bookReducer } from "./book/reducer";
 
 export const rootReducer = (state = {}, action = {}) => ({
-  book: bookReducer(state.book, action),
+  books: bookReducer(state.books, action),
 });
 
 export const store = configureStore({

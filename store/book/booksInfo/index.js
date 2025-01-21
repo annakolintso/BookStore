@@ -1,20 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getBooks } from "./thunks";
 
-const SLICE_NAME = "allBooks";
 const initialState = {
-  books: [],
+  loading: false,
+  error: null,
+  list: [],
 };
 
 export const booksSlice = createSlice({
-  name: SLICE_NAME,
+  name: 'books',
   initialState: initialState,
-  reducers: {
-    saveAllBooks: (state, action) => {
-      state.books = action.payload;
-
-      return state;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getBooks.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getBooks.fulfilled, (state, action) => {
+        state.loading = false;
+        state.list = action.payload;
+      })
+      .addCase(getBooks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
-
-export const booksActions = booksSlice.actions;

@@ -1,24 +1,40 @@
-import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
 import Typography from "../../components/Typography";
+import { useDispatch, useSelector } from 'react-redux';
 import themeSettings from "../../../theme";
+import { getBooks, getCover } from '../../../store/book/booksInfo/thunks';
 
-const WelcomeScreen = () => (
-  <View style={styles.view}>
-    <View style={styles.container}>
-      <Image source={require("./../../../assets/images/icon.png")}
-        style={{ ...styles.logo }} />
-      <Typography
-        text={"HOME"}
-        style={styles.description}
-      />
+const WelcomeScreen = () => {
+  const dispatch = useDispatch();
+  const { list, loading, error } = useSelector((state) => state.books);
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
+
+  if (loading) return (<Typography text={"Завантаження.."} style={styles.loading} />);
+  if (error) return (<Typography text={error} style={styles.error} />);
+  return (
+    <View style={styles.view}>
+      {list?.map(book => (
+        <>
+          <Typography
+            text={JSON.stringify(book.title)}
+            style={styles.description}
+          />
+
+        </>
+      ))}
+
     </View>
-  </View>
-);
+  )
+};
 
 const styles = StyleSheet.create({
   view: {
     flex: 1,
+    paddingTop: 250
   },
   container: {
     flex: 1,

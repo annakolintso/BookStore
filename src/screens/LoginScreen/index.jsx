@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, Alert, Platform } from 'react-native';
 import Button from "./../../components/Button";
 import Typography from "./../../components/Typography";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingTop: 66,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: Platform.OS === "ios" ? 20 : 10,
+    paddingRight: Platform.OS === "ios" ? 20 : 10,
     paddingBottom: 39,
   },
   back: {
