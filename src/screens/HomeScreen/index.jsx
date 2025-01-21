@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Typography from "../../components/Typography";
 import { useDispatch, useSelector } from 'react-redux';
-import themeSettings from "../../../theme";
-import { getBooks, getCover } from '../../../store/book/booksInfo/thunks';
+import Typography from '../../components/Typography';
+import themeSettings from '../../../theme';
+import { getBooks } from '../../../store/book/booksInfo/thunks';
 
 const WelcomeScreen = () => {
   const dispatch = useDispatch();
@@ -13,22 +13,22 @@ const WelcomeScreen = () => {
     dispatch(getBooks());
   }, [dispatch]);
 
-  if (loading) return (<Typography text={"Завантаження.."} style={styles.loading} />);
+  if (loading) return (<Typography text={'Завантаження..'} style={styles.loading} />);
   if (error) return (<Typography text={error} style={styles.error} />);
+
   return (
     <View style={styles.view}>
+      {/* flatList */}
       {list?.map(book => (
         <>
           <Typography
             text={JSON.stringify(book.title)}
             style={styles.description}
           />
-
         </>
       ))}
-
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 48,
     paddingLeft: 20,
-    paddingRight: 20,
+    paddingRight: 20
   },
   background: {
-    width: '100%',
+    width: '100%'
   },
   description: {
     marginBottom: 87,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 136,
     height: 136
-  },
+  }
 });
 
 export default WelcomeScreen;

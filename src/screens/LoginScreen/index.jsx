@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Alert, Platform } from 'react-native';
-import Button from "./../../components/Button";
-import Typography from "./../../components/Typography";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import theme from "../../../theme";
 import { useNavigation } from '@react-navigation/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Button from './../../components/Button';
+import Typography from './../../components/Typography';
+import theme from '../../../theme';
 
-const LoginScreen = () => {
+const LoginScreen = ({ route }) => {
+  if (!route?.params) return;
+
+  // nav. params usage example:
+  // const { params: { testOption } } = route;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -40,13 +45,13 @@ const LoginScreen = () => {
             onPress={() => navigation.goBack()}
           />
           <Typography
-            text={"Get Started"}
-            type={"headline"}
+            text={'Get Started'}
+            type={'headline'}
             style={styles.title}
           />
         </View>
         <Typography
-          text={"Please fill your details to login."}
+          text={'Please fill your details to login.'}
           style={styles.formDescription}
         />
         <TextInput
@@ -54,16 +59,19 @@ const LoginScreen = () => {
           placeholder="Email"
           keyboardType="email-address"
           value={email}
-          inlineImageLeft='eye'
+          inlineImageLeft="eye"
+          autoCapitalize="none"
           onChangeText={setEmail}
         />
         <View style={styles.passwordContainer}>
+          {/* a bit bigger paddingRight for passInput */}
           <TextInput
             style={styles.input}
             placeholder="Password"
             secureTextEntry={!showPassword}
             value={password}
-            inlineImageLeft='search_icon'
+            inlineImageLeft="search_icon"
+            autoCapitalize="none"
             onChangeText={setPassword}
           />
           <MaterialCommunityIcons
@@ -75,11 +83,10 @@ const LoginScreen = () => {
           />
         </View>
         <Button
-          text={"Login"}
+          text={'Login'}
           onPress={handleLogin}
         />
       </View>
-
     </View>
   );
 };
@@ -89,9 +96,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingTop: 66,
-    paddingLeft: Platform.OS === "ios" ? 20 : 10,
-    paddingRight: Platform.OS === "ios" ? 20 : 10,
-    paddingBottom: 39,
+    paddingLeft: Platform.OS === 'ios' ? 20 : 10,
+    paddingRight: Platform.OS === 'ios' ? 20 : 10,
+    paddingBottom: 39
   },
   back: {
     position: 'absolute',
@@ -99,7 +106,7 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   topView: {
-    flex: 1,
+    flex: 1
   },
   header: {
     position: 'relative',
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
   passwordIcon: {
     position: 'absolute',
     top: 14,
-    right: 16,
+    right: 16
   },
   input: {
     width: '100%',
@@ -130,8 +137,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 15,
-    paddingHorizontal: 10,
-  },
+    paddingHorizontal: 10
+  }
 });
 
 export default LoginScreen;

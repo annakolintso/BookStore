@@ -10,6 +10,4 @@ const translations = {
   "en": englishLanguage,
 };
 
-console.log("Current device languageCode is: ", Localization.getLocales()[0].languageCode);
-
 export default translations[Localization.getLocales()[0].languageCode] || translations[defaultAppLanguage];
