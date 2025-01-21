@@ -8,12 +8,14 @@ import HomeScreen from "./HomeScreen";
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
+  const hideDefaultHeader = { headerShown: false };
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome">
-        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Welcome" component={WelcomeScreen} options={hideDefaultHeader} />
+        <Stack.Screen name="Login" component={LoginScreen} options={hideDefaultHeader} />
+        <Stack.Screen name="Home" component={HomeScreen} options={hideDefaultHeader} />
       </Stack.Navigator>
     </NavigationContainer>
   );
