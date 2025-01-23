@@ -6,11 +6,13 @@ import themeSettings from '../../../theme';
 
 const ProductScreen = ( { route } ) => {
   if (!route?.params) return;
+
   const { params: { key } } = route;
   const { list } = useSelector((state) => state.books);
   const bookDetail = list.find(book => book.key === key);
 
   return (
+    // make as on design
     <View style={styles.view}>
       <View style={styles.bookContainer}>
           <Image

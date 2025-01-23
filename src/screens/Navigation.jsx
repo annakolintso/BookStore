@@ -11,6 +11,7 @@ const Stack = createNativeStackNavigator();
 export default function Navigation() {
   const hideDefaultHeader = { headerShown: false };
 
+  // add tab navigation in the bottom
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome">

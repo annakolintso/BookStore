@@ -13,11 +13,14 @@ const HomeScreen = ({ navigation }) => {
     dispatch(getBooks());
   }, [dispatch]);
 
+  // place loadingText in the center of the screen
   if (loading) return (<Typography text={'Завантаження..'} style={styles.loading} />);
   if (error) return (<Typography text={error} style={styles.error} />);
 
   return (
     <View style={styles.view}>
+      {/* add title for navBar */}
+      {/* add title */}
       <FlatList
         data={list}
         numColumns={2}
