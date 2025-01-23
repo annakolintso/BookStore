@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, FlatList, Image, TouchableHighlight } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Typography from '../../components/Typography';
 import themeSettings from '../../../theme';
 import { getBooks } from '../../../store/book/booksInfo/thunks';
 
-const WelcomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const { list, loading, error } = useSelector((state) => state.books);
 
@@ -18,15 +18,39 @@ const WelcomeScreen = () => {
 
   return (
     <View style={styles.view}>
-      {/* flatList */}
-      {list?.map(book => (
-        <>
-          <Typography
-            text={JSON.stringify(book.title)}
-            style={styles.description}
-          />
-        </>
-      ))}
+      <FlatList
+        data={list}
+        numColumns={2}
+        keyExtractor={(item) => item?.key}
+        contentContainerStyle={styles.bookList}
+        columnWrapperStyle={styles.bookWrapper}
+        renderItem={({ item }) => {
+          return (
+            <TouchableHighlight onPress={() => navigation.navigate('Product', { key: item.key })} style={styles.bookContainer}>
+              <View style={styles.bookView}>
+                <Image
+                  source={require('./../../../assets/images/book_cover2.png')}
+                  style={{ ...styles.background }}
+                />
+                <View style={styles.bookInfo}>
+                  <Typography
+                    text={item.title}
+                    style={styles.title}
+                  />
+                  <Typography
+                    text={item?.author_name?.[0]}
+                    style={styles.author}
+                  />
+                  <Typography
+                    text={'$25.00'}
+                    style={styles.price}
+                  />
+                </View>
+              </View>
+            </TouchableHighlight>
+          )
+        }}
+      />
     </View>
   );
 };
@@ -34,28 +58,50 @@ const WelcomeScreen = () => {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    paddingTop: 250
+    paddingHorizontal: 20,
+    paddingVertical: 130,
   },
-  container: {
+  bookWrapper: {
+    justifyContent: 'space-between',
+  },
+  bookView: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    paddingBottom: 48,
-    paddingLeft: 20,
-    paddingRight: 20
+  },
+  bookContainer: {
+    width: '48%',
+    backgroundColor: '#B8B8B8',
+    borderRadius: 8,
   },
   background: {
-    width: '100%'
+    marginHorizontal: 'auto',
+    marginTop: 11,
   },
-  description: {
-    marginBottom: 87,
-    color: themeSettings.palette.baseColors.secondary
+  title: {
+    marginBottom: 8,
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 700,
+    fontFamily: 'OpenSans_Bold'
   },
-  logo: {
-    marginBottom: 20,
-    width: 136,
-    height: 136
+  author: {
+    color: '#fff',
+    fontSize: 11,
+    marginBottom: 14
+  },
+  price: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: 700,
+    fontFamily: 'OpenSans_Bold'
+  },
+  bookInfo: {
+    backgroundColor: themeSettings.palette.baseColors.black,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 12,
+    minHeight: 150
   }
 });
 
-export default WelcomeScreen;
+export default HomeScreen;

@@ -23,8 +23,8 @@ const LoginScreen = ({ route }) => {
   };
 
   const handleLogin = () => {
-    const hardcodedEmail = 'test@gmail.com';
-    const hardcodedPassword = 'pas123';
+    const hardcodedEmail = '1';
+    const hardcodedPassword = '1';
 
     if (email === hardcodedEmail && password === hardcodedPassword) {
       navigation.navigate('Home');

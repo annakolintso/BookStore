@@ -11,7 +11,7 @@ export const getBooks = createAsyncThunk(
         params: {
           author: "tolkien",
           limit: 2,
-          fields: "title, id, olid, isbn"
+          fields: "title, key, author_name, publish_year"
         }
       });
       return response.data.docs;
