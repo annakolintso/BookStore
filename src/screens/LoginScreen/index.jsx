@@ -5,18 +5,16 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Button from './../../components/Button';
 import Typography from './../../components/Typography';
 import theme from '../../../theme';
+import { useAuth } from "./../../contexts/AuthContext";
 
 const LoginScreen = ({ route }) => {
   if (!route?.params) return;
-
-  // nav. params usage example:
-  // const { params: { testOption } } = route;
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const navigation = useNavigation();
+  const { setIsAuthenticated } = useAuth();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -27,7 +25,7 @@ const LoginScreen = ({ route }) => {
     const hardcodedPassword = '1';
 
     if (email === hardcodedEmail && password === hardcodedPassword) {
-      navigation.navigate('Home');
+      setIsAuthenticated(true);
     } else {
       Alert.alert('Error', 'Invalid email or password');
     }
@@ -64,9 +62,8 @@ const LoginScreen = ({ route }) => {
           onChangeText={setEmail}
         />
         <View style={styles.passwordContainer}>
-          {/* a bit bigger paddingRight for passInput */}
           <TextInput
-            style={styles.input}
+            style={[styles.input, styles.inputPass]}
             placeholder="Password"
             secureTextEntry={!showPassword}
             value={password}
@@ -138,6 +135,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 15,
     paddingHorizontal: 10
+  },
+  inputPass: {
+    paddingRight: 45
   }
 });
 

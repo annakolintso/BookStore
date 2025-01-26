@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Typography from '../../components/Typography';
 import themeSettings from '../../../theme';
 import { getBooks } from '../../../store/book/booksInfo/thunks';
+import theme from '../../../theme';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -13,11 +14,16 @@ const HomeScreen = ({ navigation }) => {
     dispatch(getBooks());
   }, [dispatch]);
 
-  if (loading) return (<Typography text={'Завантаження..'} style={styles.loading} />);
+  if (loading) return (<Typography text={'Loading...'} style={styles.loading} />);
   if (error) return (<Typography text={error} style={styles.error} />);
 
   return (
     <View style={styles.view}>
+      <Typography
+        text={'Top Books'}
+        type={'headline'}
+        style={styles.pageTitle}
+      />
       <FlatList
         data={list}
         numColumns={2}
@@ -56,10 +62,14 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  loading: {
+    textAlign: 'center',
+    paddingVertical: 400
+  },
   view: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 130,
+    paddingVertical: 110,
   },
   bookWrapper: {
     justifyContent: 'space-between',
@@ -101,7 +111,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 12,
     minHeight: 150
-  }
+  },
+  pageTitle: {
+    color: theme.palette.baseColors.black,
+    marginBottom: 23
+  },
 });
 
 export default HomeScreen;

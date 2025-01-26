@@ -5,6 +5,7 @@ import { SplashScreen } from 'expo-router';
 import { Provider } from 'react-redux';
 import Navigation from './src/screens/Navigation';
 import { store } from './store';
+import { AuthProvider } from "./src/contexts/AuthContext";
 // import { TranslatorProvider } from 'react-translate';
 // import translations from './translations';
 
@@ -33,8 +34,10 @@ const App = () => {
   return (
     <Provider store={store}>
       {/* <TranslatorProvider translations={translations}> */}
-      <StatusBar style="auto" />
-      <Navigation />
+        <AuthProvider>
+          <StatusBar style="auto" />
+          <Navigation />
+        </AuthProvider>
       {/* </TranslatorProvider> */}
     </Provider>
   );
