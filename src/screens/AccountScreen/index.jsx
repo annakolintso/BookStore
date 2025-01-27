@@ -3,15 +3,15 @@ import { View, StyleSheet } from 'react-native';
 import Typography from '../../components/Typography';
 import theme from '../../../theme';
 import Button from './../../components/Button';
-import { useAuth } from "./../../contexts/AuthContext";
+import { useAuth } from '../../contexts/AuthContext';
 
-const HomeScreen = () => {
+const AccountScreen = () => {
   const { logout } = useAuth();
 
   return (
     <View style={styles.view}>
       <Typography
-        text={'Account page'}
+        text={'Account'}
         type={'headline'}
         style={styles.pageTitle}
       />
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default AccountScreen;

@@ -10,7 +10,7 @@ export const getBooks = createAsyncThunk(
       const response = await api.get('search.json', {
         params: {
           author: "tolkien",
-          limit: 2,
+          limit: 100,
           fields: "title, key, author_name, publish_year"
         }
       });

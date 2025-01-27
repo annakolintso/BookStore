@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,7 +7,7 @@ import WelcomeScreen from "./WelcomeScreen";
 import LoginScreen from "./LoginScreen";
 import HomeScreen from "./HomeScreen";
 import CartScreen from "./CartScreen";
-import CategoryScreen from "./CategoryScreen";
+import CategoriesScreen from "./CategoriesScreen";
 import AccountScreen from "./AccountScreen";
 import ProductScreen from "./ProductScreen";
 import Entypo from '@expo/vector-icons/Entypo';
@@ -24,7 +24,7 @@ const tabNavBarSettings = {
     iconName: 'home',
     title: 'Home',
   },
-  CategoryScreen: {
+  CategoriesScreen: {
     icon: MaterialIcons,
     iconName: 'category',
     title: 'Categories',
@@ -72,10 +72,10 @@ const TabsNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="CategoryScreen"
-        component={CategoryScreen}
+        name="CategoriesScreen"
+        component={CategoriesScreen}
         options={{
-          title: tabNavBarSettings.CategoryScreen.title,
+          title: tabNavBarSettings.CategoriesScreen.title,
         }}
       />
       <Tab.Screen
@@ -114,7 +114,6 @@ export default function Navigation() {
             <Stack.Screen name="Login" component={LoginScreen} options={hideDefaultHeader} />
           </>
         )}
-
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -3,11 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import Typography from '../../components/Typography';
 import theme from '../../../theme';
 
-const HomeScreen = () => {
+const CategoriesScreen = () => {
   return (
     <View style={styles.view}>
       <Typography
-        text={'Category page'}
+        text={'Categories'}
         type={'headline'}
         style={styles.pageTitle}
       />
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default CategoriesScreen;
