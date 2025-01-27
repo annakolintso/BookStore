@@ -32,7 +32,10 @@ const HomeScreen = ({ navigation }) => {
         columnWrapperStyle={styles.bookWrapper}
         renderItem={({ item }) => {
           return (
-            <TouchableHighlight onPress={() => navigation.navigate('Product', { key: item.key })} style={styles.bookContainer}>
+            <TouchableHighlight
+              onPress={() => navigation.navigate('Product', { key: item.key })}
+              style={styles.bookContainer}
+            >
               <View style={styles.bookView}>
                 <Image
                   source={require('./../../../assets/images/book_cover2.png')}
@@ -41,6 +44,7 @@ const HomeScreen = ({ navigation }) => {
                 <View style={styles.bookInfo}>
                   <Typography
                     text={item.title}
+                    linesOfText={2}
                     style={styles.title}
                   />
                   <Typography
@@ -68,19 +72,27 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
-    paddingHorizontal: 20,
     paddingVertical: 110,
+    paddingBottom: 0
+  },
+  pageTitle: {
+    color: theme.palette.baseColors.black,
+    marginBottom: 23,
+    paddingHorizontal: 20,
   },
   bookWrapper: {
     justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
   bookView: {
     flex: 1,
+    maxHeight: 300,
   },
   bookContainer: {
     width: '48%',
     backgroundColor: '#B8B8B8',
     borderRadius: 8,
+    marginBottom: 15
   },
   background: {
     marginHorizontal: 'auto',
@@ -102,7 +114,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 22,
     fontWeight: 700,
-    fontFamily: 'OpenSans_Bold'
+    fontFamily: 'OpenSans_Bold',
+    marginTop: 'auto'
   },
   bookInfo: {
     backgroundColor: themeSettings.palette.baseColors.black,
@@ -111,11 +124,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 12,
     minHeight: 150
-  },
-  pageTitle: {
-    color: theme.palette.baseColors.black,
-    marginBottom: 23
-  },
+  }
 });
 
 export default HomeScreen;

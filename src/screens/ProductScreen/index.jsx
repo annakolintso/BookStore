@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Alert } from 'react-native';
 import { useSelector } from 'react-redux';
 import Typography from '../../components/Typography';
 import themeSettings from '../../../theme';
@@ -10,6 +10,7 @@ const ProductScreen = ({ route }) => {
     text={'No information found'}
     style={styles.info}
   />)
+
   const { params: { key } } = route;
   const { list } = useSelector((state) => state.books);
   const bookDetail = list?.find(book => book.key === key);
@@ -32,7 +33,7 @@ const ProductScreen = ({ route }) => {
               style={styles.label}
             />
             <Typography
-              text={bookDetail?.author_name?.[0]}
+              text={bookDetail?.author_name?.[0] || '-'}
               style={styles.value}
             />
           </View>
@@ -42,7 +43,7 @@ const ProductScreen = ({ route }) => {
               style={styles.label}
             />
             <Typography
-              text={bookDetail?.publish_year?.[0]}
+              text={bookDetail?.publish_year?.[0] || '-'}
               style={styles.value}
             />
           </View>
@@ -66,7 +67,10 @@ const ProductScreen = ({ route }) => {
               style={styles.value}
             />
           </View>
-          <Button text={'Add to Cart'} />
+          <Button
+            text={'Add to Cart'}
+            onPress={() => Alert.alert('Future functionality')}
+          />
         </View>
       </View>
       <View>
@@ -94,10 +98,8 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     fontSize: 16
   },
-
   title: {
     marginBottom: 8,
-    color: '#fff',
     fontSize: 24,
     fontWeight: 500,
     fontFamily: 'OpenSans_SemiBold',

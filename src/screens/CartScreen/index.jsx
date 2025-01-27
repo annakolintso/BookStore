@@ -3,11 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import Typography from '../../components/Typography';
 import theme from '../../../theme';
 
-const HomeScreen = () => {
+const CartScreen = () => {
   return (
     <View style={styles.view}>
       <Typography
-        text={'Cart page'}
+        text={'Cart'}
         type={'headline'}
         style={styles.pageTitle}
       />
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default CartScreen;

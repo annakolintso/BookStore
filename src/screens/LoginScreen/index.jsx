@@ -5,10 +5,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Button from './../../components/Button';
 import Typography from './../../components/Typography';
 import theme from '../../../theme';
-import { useAuth } from "./../../contexts/AuthContext";
+import { useAuth } from '../../contexts/AuthContext';
+import { fakeLoginCredentials } from '../../../constants/fakeLoginCredentials';
 
 const LoginScreen = ({ route }) => {
   if (!route?.params) return;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -21,10 +23,7 @@ const LoginScreen = ({ route }) => {
   };
 
   const handleLogin = () => {
-    const hardcodedEmail = '1';
-    const hardcodedPassword = '1';
-
-    if (email === hardcodedEmail && password === hardcodedPassword) {
+    if (email === fakeLoginCredentials.requiredLogin && password === fakeLoginCredentials.requiredPassword) {
       setIsAuthenticated(true);
     } else {
       Alert.alert('Error', 'Invalid email or password');
