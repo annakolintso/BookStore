@@ -1,15 +1,17 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import WelcomeScreen from "./WelcomeScreen";
 import LoginScreen from "./LoginScreen";
 import HomeScreen from "./HomeScreen";
-import CartScreen from "./CartScreen";
-import CategoryScreen from "./CategoryScreen";
+// import CartScreen from "./CartScreen";
+// import CategoryScreen from "./CategoryScreen";
 import AccountScreen from "./AccountScreen";
 import ProductScreen from "./ProductScreen";
+import LocationScreen from "./LocationScreen";
+import QrScreen from "./QrScreen";
 import Entypo from '@expo/vector-icons/Entypo';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import themeSettings from './../../theme';
@@ -24,15 +26,15 @@ const tabNavBarSettings = {
     iconName: 'home',
     title: 'Home',
   },
-  CategoryScreen: {
-    icon: MaterialIcons,
-    iconName: 'category',
-    title: 'Categories',
+  LocationScreen: {
+    icon: Entypo,
+    iconName: 'location-pin',
+    title: 'Location',
   },
-  CartScreen: {
+  QrScreen: {
     icon: MaterialIcons,
-    iconName: 'shopping-cart',
-    title: 'Cart',
+    iconName: 'qr-code',
+    title: 'Qr',
   },
   AccountScreen: {
     icon: MaterialIcons,
@@ -72,17 +74,17 @@ const TabsNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="CategoryScreen"
-        component={CategoryScreen}
+        name="LocationScreen"
+        component={LocationScreen}
         options={{
-          title: tabNavBarSettings.CategoryScreen.title,
+          title: tabNavBarSettings.LocationScreen.title,
         }}
       />
       <Tab.Screen
-        name="CartScreen"
-        component={CartScreen}
+        name="QrScreen"
+        component={QrScreen}
         options={{
-          title: tabNavBarSettings.CartScreen.title,
+          title: tabNavBarSettings.QrScreen.title,
         }}
       />
       <Tab.Screen

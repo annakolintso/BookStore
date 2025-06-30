@@ -10,7 +10,12 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.a.kolintso.bookStoreApp"
+      "bundleIdentifier": "com.a.kolintso.bookStoreApp",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your geolocation.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Access to geolocation is required.",
+        "NSCameraUsageDescription": "This app uses the camera to scan QR codes."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -35,7 +40,9 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "expo-location",
+      "expo-camera"
     ],
     "experiments": {
       "typedRoutes": true
