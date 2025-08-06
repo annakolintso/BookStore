@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Typography from '../../components/Typography';
 import themeSettings from '../../../theme';
 import Button from './../../components/Button';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 const ProductScreen = ({ route }) => {
   if (!route?.params) return (<Typography
@@ -14,6 +15,14 @@ const ProductScreen = ({ route }) => {
   const { list } = useSelector((state) => state.books);
   const bookDetail = list?.find(book => book.key === key);
 
+  const scale = useSharedValue(0.7);
+  React.useEffect(() => {
+    scale.value = withTiming(1, { duration: 600 });
+  }, []);
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
   return (
     <View style={styles.view}>
       <Typography
@@ -21,9 +30,9 @@ const ProductScreen = ({ route }) => {
         style={styles.title}
       />
       <View style={styles.bookContainer}>
-        <Image
+        <Animated.Image
           source={require('./../../../assets/images/book_cover2.png')}
-          style={styles.image}
+          style={[styles.image, animatedStyle]}
         />
         <View style={styles.bookInfo}>
           <View style={styles.bookInfoItem}>
