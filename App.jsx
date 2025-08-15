@@ -56,7 +56,7 @@ const App = () => {
             <PortalProvider>
               <StatusBar style="auto" />
               <Navigation />
-
+            </PortalProvider> 
 
               <Button
                 onPress={handlePresentModalPress}
@@ -71,7 +71,7 @@ const App = () => {
                   <Text>🎉</Text>
                 </BottomSheetView>
               </BottomSheetModal>
-            </PortalProvider>
+            
           </BottomSheetModalProvider>
         </AuthProvider>
 
