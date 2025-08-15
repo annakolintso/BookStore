@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   formDescription: {
     fontSize: 16,
-    lineHeight: '32px',
+    lineHeight: 32,
     marginBottom: 32,
     color: theme.palette.baseColors.secondary
   },

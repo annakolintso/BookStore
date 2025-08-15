@@ -16,6 +16,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import themeSettings from './../../theme';
 import { useAuth } from "../contexts/AuthContext";
+import MediaScreen from "./MediaScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -40,6 +41,11 @@ const tabNavBarSettings = {
     icon: MaterialIcons,
     iconName: 'account-box',
     title: 'Account',
+  },
+  MediaScreen: {
+    icon: MaterialIcons,
+    iconName: 'account-box',
+    title: 'MediaScreen',
   },
 };
 
@@ -94,6 +100,13 @@ const TabsNavigation = () => {
           title: tabNavBarSettings.AccountScreen.title,
         }}
       />
+      <Tab.Screen
+        name="MediaScreen"
+        component={MediaScreen}
+        options={{
+          title: tabNavBarSettings.MediaScreen.title,
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -101,14 +114,26 @@ const TabsNavigation = () => {
 export default function Navigation() {
   const hideDefaultHeader = { headerShown: false };
   const { isAuthenticated } = useAuth();
+  const linking = {
+    prefixes: ['myapp://', 'https://myapp.com'],
+    config: {
+      screens: {
+        Home: 'home',
+        MediaScreen: 'media',
+        Welcome: 'welcome',
+        Login: 'login',
+      },
+    },
+  };
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator>
         {isAuthenticated ? (
           <>
             <Stack.Screen name="TabsNavigation" component={TabsNavigation} options={hideDefaultHeader} />
             <Stack.Screen name="Home" component={HomeScreen} options={hideDefaultHeader} />
             <Stack.Screen name="Product" component={ProductScreen} />
+            <Stack.Screen name="MediaScreen" component={MediaScreen} />
           </>
         ) : (
           <>
