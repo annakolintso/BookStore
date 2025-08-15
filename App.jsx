@@ -14,6 +14,7 @@ import {
   BottomSheetView,
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
+import { PortalProvider } from '@gorhom/portal';
 
 const scopeOfFonts = {
   'OpenSans-Light': require('./assets/fonts/OpenSans-Light.ttf'),
@@ -52,23 +53,25 @@ const App = () => {
 
         <AuthProvider>
           <BottomSheetModalProvider>
-            <StatusBar style="auto" />
-            <Navigation />
+            <PortalProvider>
+              <StatusBar style="auto" />
+              <Navigation />
 
 
-            <Button
-              onPress={handlePresentModalPress}
-              title="Modal"
-              color="white"
-            />
-            <BottomSheetModal
-              ref={bottomSheetModalRef}
-              onChange={handleSheetChanges}
-            >
-              <BottomSheetView style={styles.contentContainer}>
-                <Text>🎉</Text>
-              </BottomSheetView>
-            </BottomSheetModal>
+              <Button
+                onPress={handlePresentModalPress}
+                title="Modal"
+                color="white"
+              />
+              <BottomSheetModal
+                ref={bottomSheetModalRef}
+                onChange={handleSheetChanges}
+              >
+                <BottomSheetView style={styles.contentContainer}>
+                  <Text>🎉</Text>
+                </BottomSheetView>
+              </BottomSheetModal>
+            </PortalProvider>
           </BottomSheetModalProvider>
         </AuthProvider>
 

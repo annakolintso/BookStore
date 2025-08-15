@@ -7,6 +7,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+import { Portal } from '@gorhom/portal';
 
 
 const INJECTED_JAVASCRIPT = `
@@ -95,6 +96,7 @@ const MediaScreen = () => {
 
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(undefined);
+  const [showPortal, setShowPortal] = useState(false);
 
   useEffect(() => {
     registerForPushNotificationsAsync()
@@ -181,6 +183,21 @@ const MediaScreen = () => {
           await sendPushNotification(expoPushToken);
         }}
       />
+      <Button
+        title="Show portal message"
+        onPress={() => setShowPortal(true)}
+      />
+      {showPortal && (
+        <Portal>
+              <View style={styles.portalContent}>
+                <Text>Portal message</Text>
+                <Button
+                  title="Close portal message"
+                  onPress={() => setShowPortal(false)}
+                />
+              </View>
+          </Portal>
+      )}
     </View>
   );
 };
@@ -201,6 +218,21 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
+  },
+  portalContainer: {
+    position: 'relative',
+    padding: 10
+  },
+  portalContent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
   },
 });
 

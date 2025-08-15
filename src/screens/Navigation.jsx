@@ -114,8 +114,19 @@ const TabsNavigation = () => {
 export default function Navigation() {
   const hideDefaultHeader = { headerShown: false };
   const { isAuthenticated } = useAuth();
+  const linking = {
+    prefixes: ['myapp://', 'https://myapp.com'],
+    config: {
+      screens: {
+        Home: 'home',
+        MediaScreen: 'media',
+        Welcome: 'welcome',
+        Login: 'login',
+      },
+    },
+  };
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator>
         {isAuthenticated ? (
           <>
